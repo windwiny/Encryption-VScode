@@ -98,7 +98,11 @@ const activate = (context) => {
 		}
 
 		let r = changeText(dec)
-		vscode.window.showInformationMessage(`sel "sels:${r.sels} rep:${r.replace}, get empty:${r.empty} err:${r.error}" Decrypted`);
+		let msg = `sel "sels:${r.sels} rep:${r.replace}, get empty:${r.empty} err:${r.error}" Decrypted`;
+		if(r.replace==0)
+			vscode.window.showWarningMessage(msg);
+		else
+			vscode.window.showInformationMessage(msg);
 	});
 	context.subscriptions.push(decryptFunc);
 }
@@ -111,4 +115,3 @@ module.exports = {
 	activate,
 	deactivate
 }
-
